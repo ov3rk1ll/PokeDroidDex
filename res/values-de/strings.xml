@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_about">Über</string>
+    <string name="action_language">Sprache ändern</string>
+    <string name="action_generation">Generation ändern</string>
+    
+    <string name="type_none">- Kein -</string>
+    <string name="type_normal">Normal</string>
+    <string name="type_fighting">Kampf</string>
+    <string name="type_flying">Flug</string>
+    <string name="type_poison">Gift</string>
+    <string name="type_ground">Boden</string>
+    <string name="type_rock">Gestein</string>
+    <string name="type_bug">Käfer</string>
+    <string name="type_ghost">Geist</string>
+    <string name="type_steel">Stahl</string>
+    <string name="type_fire">Feuer</string>
+    <string name="type_water">Wasser</string>
+    <string name="type_grass">Pflanze</string>
+    <string name="type_electric">Elektro</string>
+    <string name="type_psychic">Psycho</string>
+    <string name="type_ice">Eis</string>
+    <string name="type_dragon">Drache</string>
+    <string name="type_dark">Unlicht</string>
+    <string name="type_fairy">Fee</string>
+        
+    <string name="factor_none">nichts</string>
+    <string name="factor_low">gering</string>
+    <string name="factor_normal">normal</string>
+    <string name="factor_strong">stark</string>
+    
+    <string name="select_type">Gegnertyp wählen</string>
+    <string name="language_default">Systemsprache</string>
+      
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_about">About</string>
+    <string name="action_language">changer la langue</string>
+    
+    <string name="type_none">- Aucun -</string>
+    <string name="type_normal">Normal</string>
+    <string name="type_fighting">Combat</string>
+    <string name="type_flying">Vol</string>
+    <string name="type_poison">Poison</string>
+    <string name="type_ground">Sol</string>
+    <string name="type_rock">Roche</string>
+    <string name="type_bug">Insecte</string>
+    <string name="type_ghost">Spectre</string>
+    <string name="type_steel">Acier</string>
+    <string name="type_fire">Feu</string>
+    <string name="type_water">Eau</string>
+    <string name="type_grass">Plante</string>
+    <string name="type_electric">Electrik</string>
+    <string name="type_psychic">Psy</string>
+    <string name="type_ice">Glace</string>
+    <string name="type_dragon">Dragon</string>
+    <string name="type_dark">Ténèbres</string>
+    <string name="type_fairy">Fée</string>
+        
+    <string name="factor_none">rien</string>
+    <string name="factor_low">faible</string>
+    <string name="factor_normal">normale</string>
+    <string name="factor_strong">forte</string>
+    
+    <string name="select_type">Sélectionnez le type d\'ennemi</string>
+    <string name="language_default">langue par défaut</string>
+      
+</resources>
