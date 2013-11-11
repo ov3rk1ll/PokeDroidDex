@@ -3,6 +3,9 @@
 Shows strongest type to fight a Pokemon
 
 ## Changes
+### 1.4.0
+ - Added full support for Gen 1-5
+ 
 ### 1.3.4
  - Added x & y graphics
  - improved text on generation-select
