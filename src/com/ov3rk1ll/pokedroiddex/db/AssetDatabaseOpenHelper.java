@@ -8,10 +8,12 @@ import java.io.OutputStream;
  
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
  
 public class AssetDatabaseOpenHelper {
  
     private static final String DB_NAME = "pokemon.db";
+    private static final int DB_VERSION = 2;
  
     private Context context;
  
@@ -20,12 +22,15 @@ public class AssetDatabaseOpenHelper {
     }
  
     public SQLiteDatabase openDatabase() {
+    	int version = context.getSharedPreferences(DB_NAME, 0).getInt("version", 0);    	
         File dbFile = context.getDatabasePath(DB_NAME);
         dbFile.getParentFile().mkdirs();
  
-        if (!dbFile.exists()) {
+        if (!dbFile.exists() || DB_VERSION > version) {
             try {
                 copyDatabase(dbFile);
+                context.getSharedPreferences(DB_NAME, 0).edit().putInt("version", DB_VERSION).commit();
+                Log.i("AssetDatabaseOpenHelper", "created " + DB_NAME + " v" + DB_VERSION);
             } catch (IOException e) {
                 throw new RuntimeException("Error creating source database", e);
             }

@@ -35,12 +35,7 @@ import android.widget.TextView;
 public class MainActivity extends SherlockListActivity {
 	public static String TAG = "PokeCounter";
 
-	public static Type[] gen5;
-	static{
-		gen5 = new Type[17];
-		System.arraycopy(Type.values(), 0, gen5, 0, 17);
-	}
-	public static final Type[] gen6 = Type.values();
+	
 	
 	public static Typeface pokemon_pixel_font;
 	
@@ -73,11 +68,11 @@ public class MainActivity extends SherlockListActivity {
 		setContentView(R.layout.activity_main);	
 		((TextView)findViewById(R.id.textView1)).setTypeface(pokemon_pixel_font);
 		
-		Type[] gen = DataSource.getInstance().getGeneration() == 6 ? gen6 : gen5;
+		Type[] selectedGeneration = DamageCalc.GENERATION[DataSource.getInstance().getGeneration() - 1];
 		
 		// Fill Spinner 1
 		TypeAdapter spinner1 = new TypeAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1);
-		for (Type type : gen) {
+		for (Type type : selectedGeneration) {
 			int resId1 = getResources().getIdentifier("type_" + type.name().toLowerCase(), "string", getPackageName());
 			int resId2 = getResources().getIdentifier("type_" + type.name().toLowerCase(), "color", getPackageName());
 			spinner1.add(new TypeAdapter.Entry(getString(resId1), type, getResources().getColor(resId2)));
@@ -88,7 +83,7 @@ public class MainActivity extends SherlockListActivity {
 		// Fill Spinner 2
 		TypeAdapter spinner2 = new TypeAdapter(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1);	
 		spinner2.add(new TypeAdapter.Entry(getString(R.string.type_none), null, getResources().getColor(R.color.type_none)));
-		for (Type type : gen) {
+		for (Type type : selectedGeneration) {
 			int resId1 = getResources().getIdentifier("type_" + type.name().toLowerCase(), "string", getPackageName());
 			int resId2 = getResources().getIdentifier("type_" + type.name().toLowerCase(), "color", getPackageName());
 			spinner2.add(new TypeAdapter.Entry(getString(resId1), type, getResources().getColor(resId2)));

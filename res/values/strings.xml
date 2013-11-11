@@ -58,11 +58,19 @@
     </string-array>
     
     <string-array name="generation_entries">
-        <item>Gen I-V</item>
-        <item>Gen VI</item>
+        <item>Gen I\n(Red, Green, Blue and Yellow)</item>
+        <item>Gen II\n(Gold, Silver, and Crystal)</item>
+        <item>Gen III\n(Ruby, Sapphire, and Emerald)</item>
+        <item>Gen IV\n(Diamond, Pearl, and Platinum)</item>
+        <item>Gen V\n(Black and White)</item>
+        <item>Gen VI\n(X and Y)</item>
     </string-array>
     
     <string-array name="generation_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
         <item>5</item>
         <item>6</item>
     </string-array>

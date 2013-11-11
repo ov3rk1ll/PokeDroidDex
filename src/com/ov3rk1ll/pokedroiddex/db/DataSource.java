@@ -30,7 +30,7 @@ public class DataSource {
 	
 	public static void init(Context context, String language, int gen) {
 		instance = new DataSource(context, language, gen);
-		Log.i("DataSource", "init to " + language + ", generation v" + gen);
+		Log.i("DataSource", "init to " + language + ", generation " + gen);
 	}
 	
 	public static DataSource getInstance(){
