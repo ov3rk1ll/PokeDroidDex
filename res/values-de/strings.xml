@@ -33,4 +33,13 @@
     <string name="select_type">Gegnertyp wählen</string>
     <string name="language_default">Systemsprache</string>
       
+    <string-array name="generation_entries">
+        <item>Gen I\n(Rot, Grün, Blau und Gelb)</item>
+        <item>Gen II\n(Gold, Silber, und Kristall)</item>
+        <item>Gen III\n(Rubin, Saphir, und Smaragd)</item>
+        <item>Gen IV\n(Diamant, Perl, und Platin)</item>
+        <item>Gen V\n(Schwarz und Wheiß)</item>
+        <item>Gen VI\n(X und Y)</item>
+    </string-array>
+    
 </resources>
