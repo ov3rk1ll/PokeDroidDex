@@ -1,6 +1,7 @@
 package com.ov3rk1ll.pokedroiddex;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.ov3rk1ll.pokedroiddex.db.DataSource;
@@ -100,7 +101,7 @@ public class DamageCalc {
 			{NORMAL,	NORMAL,	STRONG,	NORMAL,	STRONG,	NORMAL,	NORMAL,	NORMAL,	LOW,	LOW,	LOW,	STRONG,	NORMAL,	NORMAL,	LOW,	STRONG,	NORMAL},	
 			{NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	LOW,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	STRONG,	NORMAL},	
 			{NORMAL,	LOW,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	STRONG,	LOW,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	STRONG,	NORMAL,	NORMAL,	LOW}
-		},{	// Gen Vi
+		},{	// Gen VI
 			{NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	LOW,	NORMAL,	NONE,	LOW,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL},
 			{STRONG,	NORMAL,	LOW,	LOW,	NORMAL,	STRONG,	LOW,	NONE,	STRONG,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	LOW,	STRONG,	NORMAL,	STRONG,	LOW},
 			{NORMAL,	STRONG,	NORMAL,	NORMAL,	NORMAL,	LOW,	STRONG,	NORMAL,	LOW,	NORMAL,	NORMAL,	STRONG,	LOW,	NORMAL,	NORMAL,	NORMAL,	NORMAL,	NORMAL},
@@ -124,22 +125,17 @@ public class DamageCalc {
 	
 	public static Type[][] GENERATION = new Type[6][];
 	static{
-		GENERATION[0] = new Type[15]; // Gen I
-		System.arraycopy(Type.values(), 0, GENERATION[0], 0, 15);
-		GENERATION[1] = new Type[17]; // Gen II
-		System.arraycopy(Type.values(), 0, GENERATION[1], 0, 17);
-		GENERATION[2] = new Type[17]; // Gen III
-		System.arraycopy(Type.values(), 0, GENERATION[2], 0, 17);
-		GENERATION[3] = new Type[17]; // Gen IV
-		System.arraycopy(Type.values(), 0, GENERATION[3], 0, 17);
-		GENERATION[4] = new Type[17]; // Gen V
-		System.arraycopy(Type.values(), 0, GENERATION[4], 0, 17);
-		GENERATION[5] = new Type[18]; // Gen VI
-		System.arraycopy(Type.values(), 0, GENERATION[5], 0, 18);
+		GENERATION[0] = new Type[]{Type.NORMAL, Type.FIGHTING, Type.FLYING, Type.POISON, Type.GROUND, Type.ROCK, Type.BUG, Type.GHOST, Type.FIRE, Type.WATER, Type.GRASS, Type.ELECTRIC, Type.PSYCHIC, Type.ICE, Type.DRAGON};
+		GENERATION[1] = new Type[]{Type.NORMAL, Type.FIGHTING, Type.FLYING, Type.POISON, Type.GROUND, Type.ROCK, Type.BUG, Type.GHOST, Type.STEEL, Type.FIRE, Type.WATER, Type.GRASS, Type.ELECTRIC, Type.PSYCHIC, Type.ICE, Type.DRAGON, Type.DARK};
+		GENERATION[2] = new Type[]{Type.NORMAL, Type.FIGHTING, Type.FLYING, Type.POISON, Type.GROUND, Type.ROCK, Type.BUG, Type.GHOST, Type.STEEL, Type.FIRE, Type.WATER, Type.GRASS, Type.ELECTRIC, Type.PSYCHIC, Type.ICE, Type.DRAGON, Type.DARK};
+		GENERATION[3] = new Type[]{Type.NORMAL, Type.FIGHTING, Type.FLYING, Type.POISON, Type.GROUND, Type.ROCK, Type.BUG, Type.GHOST, Type.STEEL, Type.FIRE, Type.WATER, Type.GRASS, Type.ELECTRIC, Type.PSYCHIC, Type.ICE, Type.DRAGON, Type.DARK};
+		GENERATION[4] = new Type[]{Type.NORMAL, Type.FIGHTING, Type.FLYING, Type.POISON, Type.GROUND, Type.ROCK, Type.BUG, Type.GHOST, Type.STEEL, Type.FIRE, Type.WATER, Type.GRASS, Type.ELECTRIC, Type.PSYCHIC, Type.ICE, Type.DRAGON, Type.DARK};
+		GENERATION[5] = new Type[]{Type.NORMAL, Type.FIGHTING, Type.FLYING, Type.POISON, Type.GROUND, Type.ROCK, Type.BUG, Type.GHOST, Type.STEEL, Type.FIRE, Type.WATER, Type.GRASS, Type.ELECTRIC, Type.PSYCHIC, Type.ICE, Type.DRAGON, Type.DARK, Type.FAIRY};
 	}
 	
 	public static float getDamageFactor(Type attacker, Type defender){
-		return damageTable[DataSource.getInstance().getGeneration() - 1][attacker.ordinal()][defender.ordinal()];
+		List<Type> list = Arrays.asList(GENERATION[DataSource.getInstance().getGeneration() - 1]);
+		return damageTable[DataSource.getInstance().getGeneration() - 1][list.indexOf(attacker)][list.indexOf(defender)];
 	}
 	
 	public static List<DamageTypeAdapter.Entry> getFactorList(Type defender1, Type defender2){
@@ -164,7 +160,7 @@ public class DamageCalc {
 		
 		return new int[]{R.string.factor_none, R.color.factor_none};
 	}
-	
+		
 	public enum Type {
 		NORMAL,
 		FIGHTING,
