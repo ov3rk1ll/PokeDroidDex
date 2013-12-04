@@ -60,8 +60,10 @@ public class MainActivity extends SherlockListActivity {
 
 		TextView mAppName = (TextView) findViewById(titleId);
 		pokemon_pixel_font = Typeface.createFromAsset(getAssets(), "fonts/pokemon_pixel_font.ttf");
-		mAppName.setTypeface(pokemon_pixel_font);
-		mAppName.setTextSize(14);
+		if(mAppName != null && pokemon_pixel_font != null){
+			mAppName.setTypeface(pokemon_pixel_font);
+			mAppName.setTextSize(14);
+		}
 		
 		getSupportActionBar().setDisplayShowHomeEnabled(false);
 		
