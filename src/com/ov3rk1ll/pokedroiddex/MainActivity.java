@@ -8,6 +8,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.actionbarsherlock.widget.SearchView.OnSuggestionListener;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 import com.ov3rk1ll.pokedroiddex.DamageCalc.Type;
 import com.ov3rk1ll.pokedroiddex.db.DataSource;
 import com.ov3rk1ll.pokedroiddex.db.IconCursorAdapter;
@@ -127,7 +129,24 @@ public class MainActivity extends SherlockListActivity {
 		((Spinner)findViewById(R.id.spinnerType2)).setSelection(0);
 	}
 	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
+	}
+	
 	public void updateDamageData(){
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+		easyTracker.send(MapBuilder
+				.createEvent("ui_action", "update_type", type1 + "-" + type2, null).build()
+		);
+		      
 		DamageTypeAdapter adapter = new DamageTypeAdapter(MainActivity.this,
 				R.layout.simple_list_item,
 				android.R.id.text1,
@@ -204,6 +223,11 @@ public class MainActivity extends SherlockListActivity {
 			@Override
 			public boolean onSuggestionClick(int position) {
 				Cursor cursor = (Cursor) suggestionsAdapter.getItem(position);
+				
+				EasyTracker easyTracker = EasyTracker.getInstance(MainActivity.this);
+				easyTracker.send(MapBuilder
+						.createEvent("ui_action", "update_pokemon", cursor.getString(0), null).build()
+				);
 				
 				int idx1 = ((TypeAdapter)((Spinner)findViewById(R.id.spinnerType1)).getAdapter()).find(cursor.getString(2));
 				int idx2 = ((TypeAdapter)((Spinner)findViewById(R.id.spinnerType2)).getAdapter()).find(cursor.getString(3));
