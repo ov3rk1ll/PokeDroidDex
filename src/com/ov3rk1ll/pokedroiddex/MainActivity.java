@@ -10,6 +10,9 @@ import com.actionbarsherlock.widget.SearchView;
 import com.actionbarsherlock.widget.SearchView.OnSuggestionListener;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.mediation.admob.AdMobExtras;
 import com.ov3rk1ll.pokedroiddex.DamageCalc.Type;
 import com.ov3rk1ll.pokedroiddex.db.DataSource;
 import com.ov3rk1ll.pokedroiddex.db.IconCursorAdapter;
@@ -35,10 +38,7 @@ import android.widget.TextView;
 
 @SuppressLint("DefaultLocale")
 public class MainActivity extends SherlockListActivity {
-	public static String TAG = "PokeCounter";
-
-	
-	
+	public static String TAG = "PokeCounter";	
 	public static Typeface pokemon_pixel_font;
 	
 	public static String language = null;
@@ -48,6 +48,8 @@ public class MainActivity extends SherlockListActivity {
 	
 	private IconCursorAdapter suggestionsAdapter;
 	private Menu menu;
+	
+	private AdView adView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +129,19 @@ public class MainActivity extends SherlockListActivity {
 			public void onNothingSelected(AdapterView<?> arg0) {}			
 		});
 		((Spinner)findViewById(R.id.spinnerType2)).setSelection(0);
+		
+		adView = (AdView)this.findViewById(R.id.adView);
+		Bundle bundle = new Bundle();
+		bundle.putString("color_bg", "CC0000");
+		bundle.putString("color_text", "FFFFFF");
+		AdMobExtras extras = new AdMobExtras(bundle);
+
+		AdRequest adRequest = new AdRequest.Builder()
+			.addNetworkExtras(extras)
+		    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+		    //.addTestDevice("ED68473C043EC222F3BD01663BF2BF75")
+		    .build();
+		adView.loadAd(adRequest);
 	}
 	
 	@Override
@@ -139,6 +154,24 @@ public class MainActivity extends SherlockListActivity {
 	public void onStop() {
 		super.onStop();
 		EasyTracker.getInstance(this).activityStop(this);
+	}
+	
+	@Override
+	public void onPause() {
+	  adView.pause();
+	  super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+	  super.onResume();
+	  adView.resume();
+	}
+
+	@Override
+	public void onDestroy() {
+	  adView.destroy();
+	  super.onDestroy();
 	}
 	
 	public void updateDamageData(){

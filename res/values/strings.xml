@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="admob_adunitid">ca-app-pub-2382574370348580/3616843752</string>
+    
     <string name="app_name">PokeCounter</string>
     <string name="action_about">About</string>
     <string name="action_language">Change language</string>
